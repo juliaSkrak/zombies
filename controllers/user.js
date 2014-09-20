@@ -168,20 +168,22 @@ connection.end();
 * update location
 */
 exports.updateLocation = function(id, longitude, latitude, callback){
-var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : 'CoolRunnings',
-  database : 'nodejs'
-});
+  var connection = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'root',
+    password : 'CoolRunnings',
+    database : 'nodejs'
+  });
 
-connection.connect();
+  connection.connect();
 
   var sql = 'INSERT INTO users (id, longitude, latitude, lastCheckIn) VALUES ("' + id + '", '+ parseFloat(longitude) + ',' + parseFloat(latitude) + ', NOW()) ON DUPLICATE KEY UPDATE longitude=VALUES(longitude), latitude=VALUES(latitude), lastCheckIn=VALUES(lastCheckIn)';
+
   connection.query(sql, function(err, results) {
-  if(err) {
-      callback(err);
-    }else{
+    if(err) {
+        callback(err);
+    }
+    else{
       callback(null, results);
     }
   });

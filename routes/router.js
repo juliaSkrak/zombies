@@ -13,6 +13,7 @@ module.exports = function(app){
     var id = req.body.id;
     var longitude = req.body.longitude;
     var latitude = req.body.latitude;
+
     //call update controller with params
     controller.updateLocation(id, longitude, latitude, function(err, results) {
       if (err) {
