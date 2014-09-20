@@ -1,7 +1,7 @@
 var mysql = require('mysql');
 exports.update = function(id, longitude, latitude){
 var connection = mysql.createConnection({
-  host     : 'HTNzombies',
+  host     : 'localhost',
   user     : 'root',
   password : 'CoolRunnings'
 });
@@ -26,7 +26,7 @@ connection.end();
 */
 exports.findId = function(id){
 var connection = mysql.createConnection({
-  host     : 'HTNzombies',
+  host     : 'localhost',
   user     : 'root',
   password : 'CoolRunnings'
 });
@@ -45,7 +45,7 @@ connection.end();
 
 exports.findLong = function(long){
 var connection = mysql.createConnection({
-  host     : 'HTNzombies',
+  host     : 'localhost',
   user     : 'root',
   password : 'CoolRunnings'
 });
