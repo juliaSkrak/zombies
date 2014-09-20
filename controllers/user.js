@@ -48,6 +48,50 @@ connection.end();
 }
 
 /*
+* orders users by kill count 
+*/
+exports.findTotal = function(callback){
+var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : 'CoolRunnings', 
+  database : 'nodejs'
+});
+connection.connect();
+  var sql    = 'select id, infectCount, infectTime from users where (infectCount>0) order by infectCount asc;';
+  connection.query(sql, function(err, results) {
+  if(err) {
+      callback(err);
+    }else{
+      callback(null, results);
+    }
+  });
+connection.end();
+}
+
+/*
+* orders users by kill count 
+*/
+exports.killLocations = function(callback){
+var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : 'CoolRunnings', 
+  database : 'nodejs'
+});
+connection.connect();
+  var sql    = 'select infectLongitude, infectLatitude from users where infectTime < NOW();';
+  connection.query(sql, function(err, results) {
+  if(err) {
+      callback(err);
+    }else{
+      callback(null, results);
+    }
+  });
+connection.end();
+}
+
+/*
 * finds if a user is infected
 */
 exports.isInfected = function(id, callback){
@@ -93,6 +137,7 @@ connection.connect();
 connection.end();
 
 }
+
 
 
 //updates=>>
