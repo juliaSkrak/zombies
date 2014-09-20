@@ -17,6 +17,25 @@ module.exports = function(app){
     controller.updateLocation(id, longitude, latitude);
   });
 
+  app.post('/isZombie', function(req, res) {
+    var id = req.body.id;
+    var infected = controller.isInfected(id, function(err, results) {
+      if (err) {
+        throw err;
+      }
+      else {
+        return results[0]['infected'];
+      }
+    });
+    var infectCount;
+    if (infected) {
+     //get kill count 
+    }
+    else{
+      infectCount = 0;
+    }
+  });
+
   app.get('/leaderboard', function (req, res) {
     //leaderboard of # of infects
   });
