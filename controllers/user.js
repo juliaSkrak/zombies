@@ -3,7 +3,8 @@ exports.update = function(id, longitude, latitude){
 var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
-  password : 'CoolRunnings'
+  password : 'CoolRunnings',
+  database: 'nodejs'
 });
 
 connection.connect();
