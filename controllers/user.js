@@ -36,7 +36,7 @@ var connection = mysql.createConnection({
   database : 'nodejs'
 });
 connection.connect();
-  var sql    = 'SELECT longitude, latitude, (infectTime is NULL) as infected FROM users;';
+  var sql    = 'SELECT longitude, latitude, (infectTime is not NULL) as infected FROM users;';
   connection.query(sql, function(err, results) {
   if(err) {
       callback(err);
@@ -58,7 +58,7 @@ var connection = mysql.createConnection({
   database : 'nodejs'
 });
 connection.connect();
-  var sql    = 'SELECT (infectTime IS NOT NULL) as infected FROM users WHERE id='+ id +';';
+  var sql    = 'SELECT (infectTime IS NOT NULL) as infected FROM users WHERE id="'+ id +'";';
   connection.query(sql, function(err, results) {
   if(err) {
       callback(err);
