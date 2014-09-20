@@ -11,7 +11,7 @@ connection.connect();
 /*
 * update a user's location
 */
-	var sql = 'REPLACE INTO users values (' + id + ', '+ longitude +',' + latitude + ')' ;
+	var sql = 'INSERT INTO users (id, longitude, latitude, lastCheckIn) VALUES ("' + id + '", '+parseFloat(longitude) + ',' + parseFloat(latitude) + ', NOW()) ON DUPLICATE KEY UPDATE longitude=VALUES(longitude), latitude=VALUES(latitude), lastCheckIn=VALUES(lastCheckIn)';
 	connection.query(sql, function(err, results) {
 	if(err)	{
   		throw err;
