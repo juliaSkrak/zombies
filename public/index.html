@@ -55,11 +55,15 @@
 
         var x;
 
+        $(".dynTable").remove();
+
         for (x = 0; x < zombies.length; x++) {
             if (zombies[x].idz == 0) {
               var image = 'img/bluePerson.gif';
+              $("#humansTable").append("<tr class=\"dynTable\"><td>" + zombies[x].lat + "</td><td>" + zombies[x].long +"</td></tr>");
             } else {
               var image = 'img/purpleDot.gif';
+              $("#zombiesTable").append("<tr class=\"dynTable\"><td>" + zombies[x].lat + "</td><td>" + zombies[x].long +"</td><td></td></tr>");
             }
             var myLatLng = new google.maps.LatLng(zombies[x].long, zombies[x].lat);
             var beachMarker = new google.maps.Marker({
@@ -101,8 +105,36 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4"><div id="map-canvas" ></div></div>
+        <div class="col-md-4">
+          <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Zombies</div>
+
+            <!-- Table -->
+            <table class="table" id="zombiesTable">
+              <tr>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Kill Count</th>
+              </tr>
+            </table>
+          </div>
+          <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Uncontaminated</div>
+
+            <!-- Table -->
+            <table class="table" id="humansTable">
+              <tr>
+                <th>Latitude</th>
+                <th>Longitude</th>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div id="map-canvas" ></div>
+        </div>
         <div class="col-md-4"></div>
       </div>
     </div>
