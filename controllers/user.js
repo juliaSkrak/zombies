@@ -26,9 +26,9 @@ connection.end();
 }
 
 /*
-* finds all user's status'
+* finds where all users were infected
 */
-exports.findTotal = function(callback){
+exports.findInfectionPoint = function(callback){
 var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
