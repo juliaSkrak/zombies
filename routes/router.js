@@ -11,16 +11,15 @@ module.exports = function(app){
   app.post('/updateLocation', function(req, res) {
     console.log(req.body);
     var id = req.body.id;
-    var longitude = req.body.long;
-    var latitude = req.body.lat;
+    var longitude = req.body.longitude;
+    var latitude = req.body.latitude;
     //call update controller with params
-    controller.update(id, longitude, latitude);
+    controller.updateLocation(id, longitude, latitude);
   });
 
   app.get('/leaderboard', function (req, res) {
     //leaderboard of # of infects
   });
-
 
   
 }
