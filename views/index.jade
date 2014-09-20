@@ -1,0 +1,36 @@
+doctype html
+html (lang=en)
+  head
+    title don't infect me!
+    style(type='text/css') html, body, #map-canvas {height: 100%; padding: 0; margin: 0}
+      script(type='text/javascript').
+      function initialize() {
+        var mapOptions = {
+          center: { lat: -34.397, lng: 150.644 },
+          zoom: 8
+        };
+        var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+      }
+
+      function loadScript() {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyA35WMkbDlrcKUIp6jl55PfU5v282OJW8s' + 'callback=initialize';
+        document.body.appendChild(script);
+      }
+
+      function zombieMarker(zombie, passMap) {
+        var latlng = new google.maps.LatLng(zombie.lat, zombie.lng);
+        new google.maps.Marker({
+          position: latlng,
+          map: passMap
+        });
+      }
+
+      function addMarkers(zombies, passMap) {
+        zombies.forEach(zombieMarker(passMap));
+      }
+  body
+    div#map-canvas
+
+      
