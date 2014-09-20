@@ -34,26 +34,32 @@ module.exports = function(app){
         throw err;
       }
       else {
-        infected = results[0]['infected'];
-        if (infected) {
-          controller.killCount(id, function(err, results) {
+        infectedPerson = results[0]['infected'];
+        if (infectedPerson) {
+          controller.killCount(id, function(err, res) {
             if (err) {
               throw err;
             }
             else {
-              infectCount = results[0]['infectCount'];
+              infectedCount = res[0]['infectCount'];
               var infectJSON = {
-                isInfected: infected,
+                isInfected: infectedPerson,
                 count: infectCount
               };
               console.log(infectJSON);
-              res.send(infectJSON);
+              res.json(infectJSON);
             }
           });
         }
         else{
           infectCount = 0;
-          console.log('person is not infected bruh');
+          var notInfect = {
+            isInfected: infectedPerson,
+            count: infectCount
+          };
+          console.log(notInfect);
+          res.json(notInfect)
+
         }
       }
     });
