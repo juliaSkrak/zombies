@@ -28,7 +28,7 @@ connection.end();
 /*
 * finds all user's status'
 */
-exports.findTotal = function(){
+exports.findTotal = function(callback){
 var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
@@ -39,9 +39,9 @@ connection.connect();
   var sql    = 'SELECT longitude, latitude, (infectTime is not NULL) as infected FROM users;';
   connection.query(sql, function(err, results) {
   if(err) {
-      throw err;
+      callback(err);
     }else{
-      console.log( results);
+      callback(null, results);
     }
   });
 connection.end();
