@@ -36,10 +36,23 @@ module.exports = function(app){
       else {
         infected = results[0]['infected'];
         if (infected) {
-          console.log("need to call killCount"); 
+          controller.killCount(id, function(err, results) {
+            if (err) {
+              throw err;
+            }
+            else {
+              infectCount = results[0]['infectCount'];
+              var infectJSON = {
+                isInfected: infected,
+                count: infectCount
+              };
+              res.send(infectJSON);
+            }
+          });
         }
         else{
           infectCount = 0;
+          console.log('person is not infected bruh');
         }
       }
     });
