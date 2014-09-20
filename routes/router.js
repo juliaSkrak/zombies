@@ -29,7 +29,7 @@ module.exports = function(app){
     });
     var infectCount;
     if (infected) {
-     //get kill count 
+      console.log("need to call killCount"); 
     }
     else{
       infectCount = 0;
