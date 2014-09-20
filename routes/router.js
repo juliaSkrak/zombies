@@ -21,7 +21,11 @@ module.exports = function(app){
     //leaderboard of # of infects
   });
 
-  
+  app.get('/isInfected', function (req, res) {
+    controller.isInfected("3A63B5B7-B588-449B-9CE9-E4CA21182C65");
+  });
+
+
 }
 
 
