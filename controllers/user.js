@@ -46,7 +46,7 @@ connection.end();
 exports.findLong = function(long){
 var connection = mysql.createConnection({
   host     : 'HTNzombies',
-  user     : 'root@HTNzombies',
+  user     : 'root',
   password : 'CoolRunnings'
 });
 connection.connect();
