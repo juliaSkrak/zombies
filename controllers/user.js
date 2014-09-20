@@ -1,16 +1,17 @@
 var mysql = require('mysql');
 exports.update = function(id, longitude, latitude){
 var connection = mysql.createConnection({
-  host     : '104.131.23.187',
-  user     : 'root@HTNzombies',
-  password : 'CoolRunnings'
+  host     : 'localhost',
+  user     : 'root',
+  password : 'CoolRunnings',
+  database: 'nodejs'
 });
 
 connection.connect();
 /*
 * update a user's location
 */
-	var sql = 'REPLACE INTO users values (' + id + ', '+ longitude +',' + latitude + ')' ;
+	var sql = 'INSERT INTO users (id, longitude, latitude, lastCheckIn) VALUES ("' + id + '", '+parseFloat(longitude) + ',' + parseFloat(latitude) + ', NOW()) ON DUPLICATE KEY UPDATE longitude=VALUES(longitude), latitude=VALUES(latitude), lastCheckIn=VALUES(lastCheckIn)';
 	connection.query(sql, function(err, results) {
 	if(err)	{
   		throw err;
@@ -26,8 +27,8 @@ connection.end();
 */
 exports.findId = function(id){
 var connection = mysql.createConnection({
-  host     : '104.131.23.187',
-  user     : 'root@HTNzombies',
+  host     : 'localhost',
+  user     : 'root',
   password : 'CoolRunnings'
 });
 connection.connect();
@@ -45,8 +46,8 @@ connection.end();
 
 exports.findLong = function(long){
 var connection = mysql.createConnection({
-  host     : '104.131.23.187',
-  user     : 'root@HTNzombies',
+  host     : 'localhost',
+  user     : 'root',
   password : 'CoolRunnings'
 });
 connection.connect();
