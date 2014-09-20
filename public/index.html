@@ -13,6 +13,8 @@
       html, body { height: 100%; margin: 0; padding: 0;}
       #map-canvas { border-style: solid; border-width: 5px; border-color: green; height: 400px; width: 400px;}
     </style>
+
+    <!-- Google Maps API -->
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA35WMkbDlrcKUIp6jl55PfU5v282OJW8s">
     </script>
@@ -24,7 +26,25 @@
 
       var zombies = [zom1,zom2,zom3];
 
-      function initialize() {
+      var zom4 = {idz:4, long:98.41, lat:26.66};
+      var zom5 = {idz:5, long:66.92, lat:-76.33};
+      var zom6 = {idz:6, long:17.23, lat:-22.222};
+
+      var zombies1 = [zom4,zom5,zom6];
+
+      var x = 0;
+      function initialize () {
+        setInterval((function initializeloop() {
+          if ( x == 0 ) {
+            refresh(zombies);
+            x = x + 1;
+          } else {
+            refresh(zombies1);
+          }
+        }), 15000);
+      }
+
+      function refresh(zombies) {
 
         var mapOptions = {
           center: { lat: -34.397, lng: 150.644},
@@ -32,14 +52,6 @@
         };
         var map = new google.maps.Map(document.getElementById('map-canvas'),
             mapOptions);
-
-        refresh(zombies,map);
-      }
-
-
-      function refresh(zombies,map) {
-
-        var y = 5;
 
         var image = 'img/purpleDot.gif';
         var x;
@@ -53,11 +65,10 @@
             });
         }
 
-        //setTimeout((refresh(zombies,map)), y*1000);
       }
 
       google.maps.event.addDomListener(window, 'load', initialize);
-      //google.maps.event.addDomListener(window, 'load', refresh(zombies));
+
     </script>
   </head>
   <body>
