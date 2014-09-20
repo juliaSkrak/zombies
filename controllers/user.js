@@ -180,7 +180,7 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
-  var sql = 'UPDATE users SET infectCount=infectCount+1 WHERE id=' + id +' ;';
+  var sql = 'UPDATE users SET infectCount=infectCount+1 WHERE id="' + id +'" ;';
   connection.query(sql, function(err, results) {
   if(err) {
       callback(err);
