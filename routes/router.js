@@ -19,21 +19,22 @@ module.exports = function(app){
 
   app.post('/isZombie', function(req, res) {
     var id = req.body.id;
-    var infected = controller.isInfected(id, function(err, results) {
+    var infected;
+    var infectCount;
+    controller.isInfected(id, function(err, results) {
       if (err) {
         throw err;
       }
       else {
-        return results[0]['infected'];
+        infected = results[0]['infected'];
+        if (infected) {
+          console.log("need to call killCount"); 
+        }
+        else{
+          infectCount = 0;
+        }
       }
     });
-    var infectCount;
-    if (infected) {
-      console.log("need to call killCount"); 
-    }
-    else{
-      infectCount = 0;
-    }
   });
 
   app.get('/leaderboard', function (req, res) {
