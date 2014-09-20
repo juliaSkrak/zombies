@@ -46,7 +46,8 @@ module.exports = function(app){
                 isInfected: infected,
                 count: infectCount
               };
-              res.json(infectJSON);
+              console.log(infectJSON);
+              res.send(infectJSON);
             }
           });
         }
