@@ -21,14 +21,14 @@
     <script type="text/javascript">
 
       var zom1 = {idz:1, long:33.9898, lat:100.33};
-      var zom2 = {idz:2, long:55, lat:-89.2};
-      var zom3 = {idz:3, long:77, lat:167.33};
+      var zom2 = {idz:0, long:55, lat:-89.2};
+      var zom3 = {idz:0, long:77, lat:167.33};
 
       var zombies = [zom1,zom2,zom3];
 
-      var zom4 = {idz:4, long:98.41, lat:26.66};
-      var zom5 = {idz:5, long:66.92, lat:-76.33};
-      var zom6 = {idz:6, long:17.23, lat:-22.222};
+      var zom4 = {idz:0, long:98.41, lat:26.66};
+      var zom5 = {idz:0, long:66.92, lat:-76.33};
+      var zom6 = {idz:1, long:17.23, lat:-22.222};
 
       var zombies1 = [zom4,zom5,zom6];
 
@@ -53,10 +53,14 @@
         var map = new google.maps.Map(document.getElementById('map-canvas'),
             mapOptions);
 
-        var image = 'img/purpleDot.gif';
         var x;
 
         for (x = 0; x < zombies.length; x++) {
+            if (zombies[x].idz == 0) {
+              var image = 'img/bluePerson.gif';
+            } else {
+              var image = 'img/purpleDot.gif';
+            }
             var myLatLng = new google.maps.LatLng(zombies[x].long, zombies[x].lat);
             var beachMarker = new google.maps.Marker({
                 position: myLatLng,
