@@ -81,7 +81,7 @@ var connection = mysql.createConnection({
   database : 'nodejs'
 });
 connection.connect();
-  var sql    = 'SELECT (infectTime IS NOT NULL) as infected FROM users WHERE id="'+ id +'";';
+  var sql    = 'SELECT id, infectCount as infected FROM users WHERE id="'+ id +'" ORDER BY infectCount;';
 
   connection.query(sql, function(err, results) {
   if(err) {
