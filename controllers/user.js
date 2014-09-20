@@ -36,7 +36,7 @@ var connection = mysql.createConnection({
   database : 'nodejs'
 });
 connection.connect();
-  var sql    = 'SELECT longitude, latitude, (infectTime is not NULL) as infected FROM users;';
+  var sql    = 'SELECT infectLongitude, infectLatitude, infectTime FROM users;';
   connection.query(sql, function(err, results) {
   if(err) {
       callback(err);
@@ -111,6 +111,27 @@ connection.connect();
     }
   });
 connection.end();
+
+}
+
+exports.killCount = function(id, callback) {
+  var sql = 'SELECT infectCount from users where id="'+ id +'";';
+  var connection = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'root',
+    password : 'CoolRunnings', 
+    database : 'nodejs'
+  });
+  connection.connect();
+  connection.query(sql, function(err, results) {
+    if (err) {
+      callback(err);
+    }
+    else{
+      callback(null, results);
+    }
+  });
+  connection.end();
 
 }
 
