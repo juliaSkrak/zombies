@@ -14,7 +14,14 @@ module.exports = function(app){
     var longitude = req.body.longitude;
     var latitude = req.body.latitude;
     //call update controller with params
-    controller.updateLocation(id, longitude, latitude);
+    controller.updateLocation(id, longitude, latitude, function(err, results) {
+      if (err) {
+        throw err;
+      }
+      else {
+        console.log(results);
+      }
+    });
   });
 
   app.post('/isZombie', function(req, res) {
