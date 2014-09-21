@@ -228,7 +228,7 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
-  var sql = 'UPDATE users SET infectLongitude=longitude, infectLatitude=latitude, infectTime=NOW(), infectCount=0 WHERE id='+ id +';';
+  var sql = 'UPDATE users SET infectLongitude=longitude, infectLatitude=latitude, infectTime=NOW(), infectCount=0 WHERE id="'+ id +'";';
   connection.query(sql, function(err, results) {
   if(err) {
       callback(err);
