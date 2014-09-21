@@ -57,12 +57,17 @@ module.exports = function(app){
     var id = req.body.id;
     var infected;
     var infectCount;
+    console.log("post is bein called");
+
     controller.isInfected(id, function(err, isInfectedResults) {
       if (err) {
         throw err;
       }
       else {
         //THIS IS A BOOLEAN THAT WILL CONTAIN 1 IF THE ID IS INFECTED
+        console.log("MOTHER FUCKER"+ isInfectedResults);
+        console.log(isInfectedResults[0]);
+        console.log(isInfectedResults[0]['infected']);
         infected = isInfectedResults[0]['infected'];
         if (infected) {
           console.log(isInfectedResults);
