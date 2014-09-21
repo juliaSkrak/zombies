@@ -9,7 +9,6 @@ module.exports = function(app){
   
   //jonah is going to post data here
   app.post('/updateLocation', function(req, res) {
-    console.log(req.body);
     var id = req.body.id;
     var longitude = req.body.longitude;
     var latitude = req.body.latitude;
@@ -76,6 +75,7 @@ module.exports = function(app){
                 isInfected: infected,
                 count: infectCount
               };
+              console.log(infectJSON);
               res.json(infectJSON);
             }
           });
@@ -86,6 +86,8 @@ module.exports = function(app){
             isInfected: infected,
             count: infectCount
           };
+          console.log(infectJSON);
+
           res.json(infectJSON);
         }
       }
