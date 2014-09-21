@@ -65,6 +65,19 @@ module.exports = function(app){
     });
   });
 
+  app.get('/getAll', function(req, res) {
+    controller.findTotal(function(err, results) {
+      if (err) {
+        throw err;
+      }
+      else{
+        res.json(results);
+      }
+    });
+  });
+
+
+
   app.get('/leaderboard', function (req, res) {
     //leaderboard of # of infects
   });
