@@ -14,7 +14,7 @@ var connection = mysql.createConnection({
   database : 'nodejs'
 });
 connection.connect();
-	var sql    = 'id FROM users WHERE abs(longitude - ' + longitude + ') < 0.001 and abs(latitude - ' + latitude + '< 0.001 and abs(timestampdiff(minute, lastCheckIn, NOW()))<2 and infectTime IS NULL;';
+	var sql    = 'SELECT id FROM users WHERE abs(longitude - ' + longitude + ') < 0.001 and abs(latitude - ' + latitude + '< 0.001 and abs(timestampdiff(minute, lastCheckIn, NOW()))<2 and infectTime IS NULL;';
 	connection.query(sql, function(err, results) {
 	if(err)	{
   		 callback(err);
