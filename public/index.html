@@ -239,8 +239,8 @@
             });
 
         }
-        $("#personCount").append("<div class=\"pcount\">"+personCount+"</div>");
-        $("#zombieCount").append("<div class=\"zcount\">"+zombieCount+"</div>");
+        $("#personCount").append("<div class=\"pcount\">(In Game: " + personCount + ")</div>");
+        $("#zombieCount").append("<div class=\"zcount\">(In Game: " + zombieCount + ")</div>");
         if (Montreal_inc >= 3) {
           $("#hotspotsTable").append("<tr class=\"dynHotspot\"><td>Montreal</td></tr>");
           hotspotCity(0,map);
