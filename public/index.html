@@ -207,7 +207,7 @@
               $("#humansTable").append("<tr class=\"dynTable\"><td>" + zombiesPassed[x].latitude + "</td><td>" + zombiesPassed[x].longitude +"</td></tr>");
             } else {
               var image = 'img/purpleDot.gif';
-              $("#zombiesTable").append("<tr class=\"dynTable\"><td>" + zombiesPassed[x].latitude + "</td><td>" + zombiesPassed[x].longitude +"</td><td></td></tr>");
+              $("#zombiesTable").append("<tr class=\"dynTable\"><td>" + zombiesPassed[x].latitude + "</td><td>" + zombiesPassed[x].longitude +"</td><td>" + zombiesPassed[x].infectCount + "</td></tr>");
               var hotspotsNew = withinHotspot(zombiesPassed[x].latitude, zombiesPassed[x].longitude);
               var i;
               for (i=0;i<5;i++) {
