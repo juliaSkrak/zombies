@@ -57,7 +57,6 @@ module.exports = function(app){
     var id = req.body.id;
     var infected;
     var infectCount;
-    console.log("post is bein called");
 
     controller.isInfected(id, function(err, isInfectedResults) {
       if (err) {
@@ -65,14 +64,15 @@ module.exports = function(app){
       }
       else {
         //THIS IS A BOOLEAN THAT WILL CONTAIN 1 IF THE ID IS INFECTED
-        console.log("MOTHER FUCKER"+ isInfectedResults);
+        console.log("THIS IS WHERE THE PRINT STATEMENTS START");
+
+        console.log(isInfectedResults);
         console.log(isInfectedResults[0]);
         console.log(isInfectedResults[0]['infected']);
+
         infected = isInfectedResults[0]['infected'];
         if (infected) {
-          console.log(isInfectedResults);
 
-          console.log(infected);
           controller.killCount(id, function(err, killCountResult) {
             if (err) {
               throw err;
@@ -85,9 +85,7 @@ module.exports = function(app){
                 isInfected: infected,
                 count: infectCount
               };
-              console.log(infectJSON);
               res.json(infectJSON);
-              console.log("is infected json should be sent")
             }
           });
         }
@@ -97,7 +95,6 @@ module.exports = function(app){
             isInfected: infected,
             count: infectCount
           };
-          console.log(infectJSON);
 
           res.json(infectJSON);
         }
