@@ -239,22 +239,9 @@
             });
 
         }
-        //$("#personCount").append("<div class=\"pcount\">(In Game: " + personCount + ")</div>");
-        //$("#zombieCount").append("<div class=\"zcount\">(In Game: " + zombieCount + ")</div>");
-        $("#probars").append(
-          "<div class=\"progress zcount\">
-            <div class=\"progress-bar progress-bar-danger zcount\" role=\"progressbar\" aria-valuenow=\"" + zombieCount + "\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: " + zombieCount + "%\">
-              <span class=\"sr-only zcount\"></span>
-            </div>
-          </div>"
-        );
-        $("#probars").append(
-          "<div class=\"progress pcount\">
-            <div class=\"progress-bar progress-bar-success pcount\" role=\"progressbar\" aria-valuenow=\"" + personCount + "\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: " + personCount + "%\">
-              <span class=\"sr-only pcount\"></span>
-            </div>
-          </div>"
-        );
+        $("#personCount").append("<div class=\"pcount\">(In Game: " + personCount + ")</div>");
+        $("#zombieCount").append("<div class=\"zcount\">(In Game: " + zombieCount + ")</div>");
+
         if (Montreal_inc >= 3) {
           $("#hotspotsTable").append("<tr class=\"dynHotspot\"><td>Montreal</td></tr>");
           hotspotCity(0,map);
