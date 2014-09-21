@@ -72,6 +72,7 @@ module.exports = function(app){
       }
       else{
         res.json(results);
+
       }
     });
   });
