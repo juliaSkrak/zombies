@@ -16,11 +16,13 @@ module.exports = function(app){
     controller.updateLocation(id, longitude, latitude, function(err, updateLocationResults) {
       if (err) throw err;
       else {
+        console.log("location")
         controller.isInfected(id, function(err, isInfectedResults) {
           if (err) {
             throw err;
           }
           else{
+            console.log("isInfected")
             var isInfected = isInfectedResults[0]['infected'];
             if(isInfected){
               controller.findNear(longitude, latitude, function(err, findNearResults) {
@@ -28,12 +30,15 @@ module.exports = function(app){
                   throw err;
                 }
                 else{
+                  console.log("findNear");
                   findNearResults.forEach(function(val, ind, arr) {
+                    console.log("for each")
                     controller.updateZombie(val.id, function(err, updateZombieResults) {
                       if (err) {
                         throw err;
                       }
                       else {
+                        console.log("update zombie")
                         controller.updateKill(id, function(err, updateKillResults) {
                           if (err) throw err;
                           else{
@@ -43,6 +48,7 @@ module.exports = function(app){
                       }
                     });
                   });
+                  console.log("for each done")
                 }
               });
             }
