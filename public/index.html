@@ -170,16 +170,18 @@
       function initialize () {
         setInterval((function initializeloop() {
           if ( t == 0 ) {
+            loadData();
             t = t + 1;
             refresh(data);
           } else {
+            loadData();
             refresh(data);
           }
         }), 15000);
       }
 
       function refresh( zombiesPassed ) {
-        loadData();
+    
         var Montreal_inc = 0;
         var New_York_inc = 0;
         var New_Orleans_inc = 0;
