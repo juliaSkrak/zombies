@@ -24,10 +24,9 @@
      function loadData(){
        $.getJSON("/getAll", function(json){
            data = json;
-           console.log(data);
+           return data;
            });
      }
-
 
       // Hotspots where our team will worry about infection
       var Montreal = [45.5,-73.5667];
@@ -168,38 +167,18 @@
         return hotspotsBool;
       }
 
-      // Below is test data
-      var zom1 = {idz:1, long:33.9898, lat:100.33};
-      var zom2 = {idz:0, long:55, lat:-89.2};
-      var zom3 = {idz:0, long:77, lat:167.33};
-      var zom4 = {idz:1, long:-78.999, lat:38.232};
-      var zom5 = {idz:1, long:-79.999, lat:45.232};
-      var zom6 = {idz:1, long:-70.999, lat:40.232};
-
-      var zombies = [zom1,zom2,zom3,zom4,zom5,zom6];
-
-      var zom7 = {idz:0, long:-98.41, lat:26.66};
-      var zom8 = {idz:0, long:-66.92, lat:76.33};
-      var zom9 = {idz:1, long:-17.23, lat:22.222};
-      var zom10 = {idz:1, long:-93.233, lat:30.232};
-      var zom11 = {idz:1, long:-92.83, lat:25.232};
-      var zom12 = {idz:1, long:-91.22, lat:26.232};
-      var zom13 = {idz:1, long:-74.999, lat:38.232};
-      var zom14 = {idz:1, long:-73.999, lat:45.232};
-      var zom15 = {idz:1, long:-69.999, lat:40.232};
-
-      var zombies1 = [zom7,zom8,zom9,zom10,zom11,zom12,zom13,zom14,zom15];
-
       var t = 0;
       function initialize () {
         setInterval((function initializeloop() {
           if ( t == 0 ) {
             t = t + 1;
-            refresh(zombies);
+            var data = loadData();
+            refresh(data);
           } else {
-            refresh(zombies1);
+            var newdata = loadData();
+            refresh(newdata);
           }
-        }), 10000);
+        }), 15000);
       }
 
       function refresh(zombiesPassed) {
@@ -224,13 +203,13 @@
         $(".dynHotspot").remove();
 
         for (x = 0; x < zombiesPassed.length; x++) {
-            if (zombiesPassed[x].idz == 0) {
+            if (zombiesPassed[x].infectTime == null) {
               var image = 'img/bluePerson.gif';
-              $("#humansTable").append("<tr class=\"dynTable\"><td>" + zombiesPassed[x].lat + "</td><td>" + zombiesPassed[x].long +"</td></tr>");
+              $("#humansTable").append("<tr class=\"dynTable\"><td>" + zombiesPassed[x].latitude + "</td><td>" + zombiesPassed[x].longitude +"</td></tr>");
             } else {
               var image = 'img/purpleDot.gif';
-              $("#zombiesTable").append("<tr class=\"dynTable\"><td>" + zombiesPassed[x].lat + "</td><td>" + zombiesPassed[x].long +"</td><td></td></tr>");
-              var hotspotsNew = withinHotspot(zombiesPassed[x].lat, zombiesPassed[x].long);
+              $("#zombiesTable").append("<tr class=\"dynTable\"><td>" + zombiesPassed[x].latitude + "</td><td>" + zombiesPassed[x].longitude +"</td><td></td></tr>");
+              var hotspotsNew = withinHotspot(zombiesPassed[x].latitude, zombiesPassed[x].longitude);
               var i;
               for (i=0;i<5;i++) {
                 if (hotspotsNew[i]) {
@@ -248,7 +227,7 @@
                 }
               }
             }
-            var myLatLng = new google.maps.LatLng(zombiesPassed[x].lat, zombiesPassed[x].long );
+            var myLatLng = new google.maps.LatLng(zombiesPassed[x].latitude, zombiesPassed[x].longitude );
             var beachMarker = new google.maps.Marker({
                 position: myLatLng,
                 map: map,
