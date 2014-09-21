@@ -19,6 +19,21 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA35WMkbDlrcKUIp6jl55PfU5v282OJW8s">
     </script>
     <script type="text/javascript">
+      
+function loadData() {
+$.ajax({
+                type: "GET",
+                            url: "/findAll",
+                                        dataType: "JSON",
+                                        success: function(JSON) {
+                                                        var users = data;         
+                                                                    
+                                        } //close success
+                                                
+    });//close AJAX
+      
+}//close setXML   
+
 
       // Hotspots where our team will worry about infection
       var Montreal = [45.5,-73.5667];
