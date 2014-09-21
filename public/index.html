@@ -212,7 +212,6 @@
             } else {
               var image = 'img/purpleDot.gif';
               zombieCount = zombieCount + 1;
-              $("#zombieCount").text() = zombieCount;
               $("#zombiesTable").append("<tr class=\"dynTable\"><td>" + zombiesPassed[x].latitude + "</td><td>" + zombiesPassed[x].longitude +"</td><td>" + zombiesPassed[x].infectCount + "</td></tr>");
               var hotspotsNew = withinHotspot(zombiesPassed[x].latitude, zombiesPassed[x].longitude);
               var i;
