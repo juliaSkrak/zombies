@@ -13,59 +13,46 @@ module.exports = function(app){
     var id = req.body.id;
     var longitude = req.body.longitude;
     var latitude = req.body.latitude;
-    
-    controller.isInfected(id, function(err, results) {
-      if (err) {
-        throw err;
-      }
-      else{
-        var isInfected = results[0]['infected'];
-        if(isInfected){
-          controller.findNear(longitude, latitude, function(err, results) {
-            if (err){
-              throw err;
-            }
-            else{
-              results.forEach(function(val, ind, arr) {
-                controller.updateZombie(val.id, function(err, res) {
-                  if (err) {
-                    throw err;
-                  }
-                  else {
-                    controller.updateKill(id, function(err, results) {
-                      if (err) throw err;
-                      else{
-                        console.log(val);
-                        controller.updateLocation(id, longitude, latitude, function(err, results) {
-                          if (err) {
-                            throw err;
-                          }
-                          else {
-                            console.log(results);
+
+    controller.updateLocation(id, longitude, latitude, function(err, updateLocationResults) {
+      if (err) throw err;
+      else {
+        controller.isInfected(id, function(err, isInfectedResults) {
+          if (err) {
+            throw err;
+          }
+          else{
+            var isInfected = isInfectedResults[0]['infected'];
+            if(isInfected){
+              controller.findNear(longitude, latitude, function(err, findNearResults) {
+                if (err){
+                  throw err;
+                }
+                else{
+                  findNearResults.forEach(function(val, ind, arr) {
+                    controller.updateZombie(val.id, function(err, updateZombieResults) {
+                      if (err) {
+                        throw err;
+                      }
+                      else {
+                        controller.updateKill(id, function(err, updateKillResults) {
+                          if (err) throw err;
+                          else{
+                          
                           }
                         });
                       }
                     });
-                  }
-                });
+                  });
+                }
               });
             }
-          });
-        }
-        else {
-          controller.updateLocation(id, longitude, latitude, function(err, results) { 
-            if (err) {
-              throw err;
-            }
-            else {
-              console.log(results);
-             }
-          });
-
-        }
+          }
+        });
       }
     });
   });
+
 
   app.post('/isZombie', function(req, res) {
     var id = req.body.id;
