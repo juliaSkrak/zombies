@@ -71,8 +71,7 @@ module.exports = function(app){
         throw err;
       }
       else{
-        var jsonString = JSON.stringify(results);
-        res.send(jsonString);
+        res.json(results);
       }
     });
   });
