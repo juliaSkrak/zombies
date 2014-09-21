@@ -200,14 +200,14 @@
 
         $(".dynTable").remove();
         $(".dynHotspot").remove();
-
+        $(".pcount").remove();
+        $(".zcount").remove();
         var zombieCount = 0;
         var personCount = 0;
         for (x = 0; x < zombiesPassed.length; x++) {
             if (zombiesPassed[x].infectTime == null) {
               var image = 'img/bluePerson.gif';
               personCount = personCount + 1;
-              $("#personCount").text() = personCount;
               $("#humansTable").append("<tr class=\"dynTable\"><td>" + zombiesPassed[x].latitude + "</td><td>" + zombiesPassed[x].longitude +"</td></tr>");
             } else {
               var image = 'img/purpleDot.gif';
@@ -240,7 +240,8 @@
             });
 
         }
-
+        $("#personCount").append("<div class=\"pcount\">"+personCount+"</div>");
+        $("#zombieCount").append("<div class=\"zcount\">"+zombieCount+"</div>");
         if (Montreal_inc >= 3) {
           $("#hotspotsTable").append("<tr class=\"dynHotspot\"><td>Montreal</td></tr>");
           hotspotCity(0,map);
