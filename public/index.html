@@ -11,7 +11,7 @@
 
     <style type="text/css">
       html, body { height: 100%; margin: 0; padding: 0;}
-      #map-canvas { border-style: solid; border-width: 5px; border-color: green; height: 400px; width: 600px;}
+      #map-canvas { border-style: solid; border-width: 5px; border-color: green; height: 600px; width: 600px;}
     </style>
 
     <!-- Google Maps API -->
@@ -177,11 +177,11 @@
             loadData();
             refresh(data);
           }
-        }), 15000);
+        }), 10000);
       }
 
       function refresh( zombiesPassed ) {
-    
+
         var Montreal_inc = 0;
         var New_York_inc = 0;
         var New_Orleans_inc = 0;
