@@ -172,18 +172,14 @@
         setInterval((function initializeloop() {
           if ( t == 0 ) {
             t = t + 1;
-            var data = loadData();
-            dlength = data.length;
-            refresh(data,dlength);
+            refresh(loadData());
           } else {
-            var newdata = loadData();
-            nlength = newdata.length;
-            refresh(newdata,nlength);
+            refresh(loadData());
           }
         }), 15000);
       }
 
-      function refresh( zombiesPassed, zlength ) {
+      function refresh( zombiesPassed ) {
 
         var Montreal_inc = 0;
         var New_York_inc = 0;
@@ -204,7 +200,7 @@
         $(".dynTable").remove();
         $(".dynHotspot").remove();
 
-        for (x = 0; x < zlength; x++) {
+        for (x = 0; x < zombiesPassed.length; x++) {
             if (zombiesPassed[x].infectTime == null) {
               var image = 'img/bluePerson.gif';
               $("#humansTable").append("<tr class=\"dynTable\"><td>" + zombiesPassed[x].latitude + "</td><td>" + zombiesPassed[x].longitude +"</td></tr>");
