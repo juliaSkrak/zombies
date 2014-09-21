@@ -21,18 +21,13 @@
     <script type="text/javascript">
       
 function loadData() {
-$.ajax({
-                type: "GET",
-                            url: "/findAll",
-                                        dataType: "json",
-                                        data: data,
-                                        success: function(data) {
-                                                        var users = data;         
-                                                                    
-                                        } //close success
-                                                
-    });//close AJAX
-      
+  $.ajax({
+        dataType: "json",
+          url: url,
+            data: data,
+              success: success
+
+      });
 }//close setXML   
 
 
