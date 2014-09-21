@@ -200,13 +200,21 @@
 
         $(".dynTable").remove();
         $(".dynHotspot").remove();
+        $(".pcount").remove();
+        $(".zcount").remove();
 
+        var zombieCount = 0;
+        var personCount = 0;
         for (x = 0; x < zombiesPassed.length; x++) {
             if (zombiesPassed[x].infectTime == null) {
               var image = 'img/bluePerson.gif';
+              personCount = personCount + 1;
+              $("#personCount").append("<p class=\"pcount\">"+personCount+"</p>");
               $("#humansTable").append("<tr class=\"dynTable\"><td>" + zombiesPassed[x].latitude + "</td><td>" + zombiesPassed[x].longitude +"</td></tr>");
             } else {
               var image = 'img/purpleDot.gif';
+              zombieCount = zombieCount + 1;
+              $("#zombieCount").append("<p class=\"zcount\">"+zombieCount+"</p>");
               $("#zombiesTable").append("<tr class=\"dynTable\"><td>" + zombiesPassed[x].latitude + "</td><td>" + zombiesPassed[x].longitude +"</td><td>" + zombiesPassed[x].infectCount + "</td></tr>");
               var hotspotsNew = withinHotspot(zombiesPassed[x].latitude, zombiesPassed[x].longitude);
               var i;
@@ -291,7 +299,7 @@
         <div class="col-md-4">
           <div class="panel panel-default">
             <!-- Default panel contents -->
-            <div class="panel-heading"><img src="/img/purpleDot.gif" >Zombies</div>
+            <div class="panel-heading"><img src="/img/purpleDot.gif" >Zombies &nbsp<div id="zombieCount"></div>
 
             <!-- Table -->
             <table class="table" id="zombiesTable">
@@ -304,7 +312,7 @@
           </div>
           <div class="panel panel-default">
             <!-- Default panel contents -->
-            <div class="panel-heading"><img src="/img/bluePerson.gif" >Uncontaminated</div>
+            <div class="panel-heading"><img src="/img/bluePerson.gif" >Uncontaminated &nbsp<div id="personCount"></div></div>
 
             <!-- Table -->
             <table class="table" id="humansTable">
