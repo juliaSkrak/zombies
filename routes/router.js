@@ -65,12 +65,17 @@ module.exports = function(app){
         //THIS IS A BOOLEAN THAT WILL CONTAIN 1 IF THE ID IS INFECTED
         infected = isInfectedResults[0]['infected'];
         if (infected) {
+          console.log(isInfectedResults);
+
+          console.log(infected);
           controller.killCount(id, function(err, killCountResult) {
             if (err) {
               throw err;
             }
             else {
+              console.log(killCountResult);
               infectCount = killCountResult[0]['infectCount'];
+              console.log(infectCount);
               var infectJSON = {
                 isInfected: infected,
                 count: infectCount
