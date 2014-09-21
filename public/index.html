@@ -24,8 +24,9 @@ function loadData() {
 $.ajax({
                 type: "GET",
                             url: "/findAll",
-                                        dataType: "JSON",
-                                        success: function(JSON) {
+                                        dataType: "json",
+                                        data: data,
+                                        success: function(data) {
                                                         var users = data;         
                                                                     
                                         } //close success
