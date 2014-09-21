@@ -19,13 +19,13 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA35WMkbDlrcKUIp6jl55PfU5v282OJW8s">
     </script>
     <script type="text/javascript">
-      
+     var data; 
 function loadData() {
   $.ajax({
         dataType: "json",
           url: "/findAll",
-            data: data,
-              success: success
+          type: "GET",
+          success: function(jsonobject){data=jsonobject;}
 
       });
 }//close setXML   
