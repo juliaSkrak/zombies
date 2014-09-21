@@ -58,37 +58,35 @@ module.exports = function(app){
     var id = req.body.id;
     var infected;
     var infectCount;
-    controller.isInfected(id, function(err, results) {
+    controller.isInfected(id, function(err, isInfectedResults) {
       if (err) {
         throw err;
       }
       else {
-        infectedPerson = results[0]['infected'];
-        if (infectedPerson) {
-          controller.killCount(id, function(err, result) {
+        //THIS IS A BOOLEAN THAT WILL CONTAIN 1 IF THE ID IS INFECTED
+        infected = isInfectedResults[0]['infected'];
+        if (infected) {
+          controller.killCount(id, function(err, killCountResult) {
             if (err) {
               throw err;
             }
             else {
-              infectCount = result[0]['infectCount'];
+              infectCount = killCountResult[0]['infectCount'];
               var infectJSON = {
-                isInfected: infectedPerson,
+                isInfected: infected,
                 count: infectCount
               };
-              console.log(infectJSON);
               res.json(infectJSON);
             }
           });
         }
         else{
           infectCount = 0;
-          var notInfect = {
-            isInfected: infectedPerson,
+          var infectJSON = {
+            isInfected: infected,
             count: infectCount
           };
-          console.log(notInfect);
-          res.json(notInfect)
-
+          res.json(infectJSON);
         }
       }
     });
