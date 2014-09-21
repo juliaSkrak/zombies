@@ -83,7 +83,7 @@ module.exports = function(app){
               throw err;
             }
             else {
-              infectedCount = res[0]['infectCount'];
+              infectCount = res[0]['infectCount'];
               var infectJSON = {
                 isInfected: infectedPerson,
                 count: infectCount
