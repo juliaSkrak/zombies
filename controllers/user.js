@@ -58,7 +58,7 @@ var connection = mysql.createConnection({
   database : 'nodejs'
 });
 connection.connect();
-  var sql    = 'select id, infectCount, infectTime from users where (infectCount>0) order by infectCount asc;';
+  var sql = 'SELECT * from users';
   connection.query(sql, function(err, results) {
   if(err) {
       callback(err);
