@@ -24,7 +24,6 @@
      function loadData(){
        $.getJSON("/getAll", function(json){
            data = json;
-           return data;
            });
      }
 
@@ -172,9 +171,9 @@
         setInterval((function initializeloop() {
           if ( t == 0 ) {
             t = t + 1;
-            refresh(loadData());
+            refresh(data);
           } else {
-            refresh(loadData());
+            refresh(data);
           }
         }), 15000);
       }
