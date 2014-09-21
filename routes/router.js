@@ -78,12 +78,12 @@ module.exports = function(app){
       else {
         infectedPerson = results[0]['infected'];
         if (infectedPerson) {
-          controller.killCount(id, function(err, res) {
+          controller.killCount(id, function(err, result) {
             if (err) {
               throw err;
             }
             else {
-              infectCount = res[0]['infectCount'];
+              infectCount = result[0]['infectCount'];
               var infectJSON = {
                 isInfected: infectedPerson,
                 count: infectCount
