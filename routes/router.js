@@ -13,14 +13,56 @@ module.exports = function(app){
     var id = req.body.id;
     var longitude = req.body.longitude;
     var latitude = req.body.latitude;
-
-    //call update controller with params
-    controller.updateLocation(id, longitude, latitude, function(err, results) {
+    
+    controller.isInfected(id, function(err, results) {
       if (err) {
         throw err;
       }
-      else {
-        console.log(results);
+      else{
+        var isInfected = results[0]['infected'];
+        if(isInfected){
+          controller.findNear(longitude, latitude, function(err, results) {
+            if (err){
+              throw err;
+            }
+            else{
+              results.forEach(function(val, ind, arr) {
+                controller.updateZombie(val.id, function(err, res) {
+                  if (err) {
+                    throw err;
+                  }
+                  else {
+                    controller.updateKill(id, function(err, results) {
+                      if (err) throw err;
+                      else{
+                        console.log(val);
+                        controller.updateLocation(id, longitude, latitude, function(err, results) {
+                          if (err) {
+                            throw err;
+                          }
+                          else {
+                            console.log(results);
+                          }
+                        });
+                      }
+                    });
+                  }
+                });
+              });
+            }
+          });
+        }
+        else {
+          controller.updateLocation(id, longitude, latitude, function(err, results) { 
+            if (err) {
+              throw err;
+            }
+            else {
+              console.log(results);
+             }
+          });
+
+        }
       }
     });
   });
@@ -72,7 +114,6 @@ module.exports = function(app){
       }
       else{
         res.json(results);
-
       }
     });
   });
